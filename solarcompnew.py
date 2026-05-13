@@ -173,6 +173,8 @@ if voltage_type == "Hybrid (AC & DC)":
             key="product_power_ac",
             help="Power consumption when running on AC (grid/inverter)"
         )
+    power_watts_dc = []
+    power_watts_ac = []
     if major_load_type == "MAIN DC LOAD":
         
         power_watts = power_watts_dc

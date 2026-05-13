@@ -1,7 +1,5 @@
 import streamlit as st
-# ✅ Add near the top of the file
-if "_prev_major_load" not in st.session_state:
-    st.session_state["_prev_major_load"] = "MAIN DC LOAD"
+
 # Add custom CSS for dropdown styling
 st.markdown(
     """
@@ -48,6 +46,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 st.title("🔆 Solar Product Configurator with Inline Component Settings")
 
@@ -142,33 +141,30 @@ else:  # Hybrid
         )
     voltage_rating = f"{dc_voltage}V DC / {ac_voltage}V AC"
 
-if voltage_type == "Hybrid (AC & DC)":
-    major_load_type = st.radio(
+if voltage_type ==  "Hybrid (AC & DC)":
+     major_load_type = st.radio(
         "Select the primary power source:",
         ["MAIN DC LOAD", "MAIN AC LOAD"],
         index=0,
         key="major_load_type"
     )
 
-if "major_load_type" not in st.session_state:
-    st.session_state.major_load_type = "MAIN DC LOAD"
-
 # Power requirement
 if voltage_type == "Hybrid (AC & DC)":
     st.markdown("**Power Requirements:**")
     col1, col2 = st.columns(2)
     with col1:
-        
         power_watts_dc = st.number_input(
             "🔋 DC Power Requirement (W):",
             min_value=0,
             value=product_info_base["default_power_watts"] if major_load_type == "MAIN DC LOAD" else 0,
             step=100,
             key="product_power_dc",
-            help="Power consumption when running on DC (battery/solar)"
+            help="Power consumption when running on DC (battery/solar)",
+            
+            
         )
-    with col2:
-        
+    with col2: 
         power_watts_ac = st.number_input(
             "🔌 AC Power Requirement (W):",
             min_value=0,
@@ -178,9 +174,12 @@ if voltage_type == "Hybrid (AC & DC)":
             help="Power consumption when running on AC (grid/inverter)"
         )
     if major_load_type == "MAIN DC LOAD":
+        power_watts_ac = 0
         power_watts = power_watts_dc
+        
     else:
         power_watts = power_watts_ac
+        power_watts_dc = 0
     #power_watts = max(power_watts_dc, power_watts_ac)  # Use max for system sizing
 else:
     power_watts = st.number_input(

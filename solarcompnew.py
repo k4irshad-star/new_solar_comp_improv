@@ -802,7 +802,8 @@ if user_components:
             
             elif "Solar panel" in c['name']:
                 if quantity > 1:
-                    st.markdown(f"- {c['name']} — ${c['price']} each × {quantity} = ${c['price'] * quantity} ({c['rating']}V, {c['power_rating']}Wp, {c['weight']}kg each)")
+                    f"- {c['name']} — ${c['price']} each × {quantity} = ${c['price'] * quantity} "
+                    f"({c['rating']}V, {c['power_rating']}Wp, {c['weight']}kg each)"
                 else:
                     st.markdown(f"- {c['name']} — ${c['price']} ({c['rating']}V, {c['power_rating']}Wp, {c['weight']}kg)")
             elif c['name'] == "Inverter":

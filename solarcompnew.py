@@ -157,6 +157,7 @@ if voltage_type == "Hybrid (AC & DC)":
     col1, col2 = st.columns(2)
     with col1:
         
+        dc_default = product_info_base["default_power_watts"] if st.session_state.get("major_load_type") == "MAIN DC LOAD" else 0
         power_watts_dc = st.number_input(
             "🔋 DC Power Requirement (W):",
             min_value=0,
@@ -166,7 +167,7 @@ if voltage_type == "Hybrid (AC & DC)":
             help="Power consumption when running on DC (battery/solar)"
         )
     with col2:
-        
+        ac_default = product_info_base["default_power_watts"] if st.session_state.get("major_load_type") == "MAIN AC LOAD" else 0
         power_watts_ac = st.number_input(
             "🔌 AC Power Requirement (W):",
             min_value=0,

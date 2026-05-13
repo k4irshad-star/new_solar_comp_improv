@@ -54,7 +54,7 @@ st.subheader("Select a Product")
 
 # Products (main appliances)
 products = {
-    "Rice Mill": {"base_price": 800, "default_voltage": "AC", "default_rating": 230, "default_power_watts": 1500, "weight": 45},
+    "Rice Mill": {"base_price": 800, "default_voltage": "AC", "default_rating": 230, "default_power_watts": 1500, "default_power_watts_ac": 1500,  "weight": 45},
     #"Testing Product": {"base_price": 1200, "default_voltage": "AC", "default_rating": 230, "default_power_watts": 2500, "weight": 65},
     "Custom Product": {"base_price": 300, "default_voltage": "DC", "default_rating": 24, "default_power_watts": 500, "weight": 0}
 }
@@ -167,7 +167,7 @@ if voltage_type == "Hybrid (AC & DC)":
         power_watts_ac = st.number_input(
             "🔌 AC Power Requirement (W):",
             min_value=0,
-            value=product_info_base["default_power_watts"] if major_load_type == "MAIN AC LOAD" else 0,
+            value=product_info_base["default_power_watts_ac"] if major_load_type == "MAIN AC LOAD" else 0,
             step=100,
             key="product_power_ac",
             help="Power consumption when running on AC (grid/inverter)"

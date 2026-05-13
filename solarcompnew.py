@@ -176,6 +176,19 @@ if voltage_type == "Hybrid (AC & DC)":
             key="product_power_ac",
             help="Power consumption when running on AC (grid/inverter)"
         )
+    if "product_power_dc" not in st.session_state:
+        st.session_state.product_power_dc = (
+            product_info_base["default_power_watts"]
+            if major_load_type == "MAIN DC LOAD"
+            else 0
+        )
+
+    if "product_power_ac" not in st.session_state:
+        st.session_state.product_power_ac = (
+            product_info_base["default_power_watts"]
+            if major_load_type == "MAIN AC LOAD"
+            else 0
+        )
     if major_load_type == "MAIN DC LOAD":
         power_watts = power_watts_dc
     else:

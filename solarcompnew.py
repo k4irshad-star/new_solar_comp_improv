@@ -149,16 +149,9 @@ if voltage_type == "Hybrid (AC & DC)":
         index=0,
         key="major_load_type"
     )
-    
-    # ✅ Reset number inputs when radio changes
-    prev_major = st.session_state.get("_prev_major_load", None)
-    if prev_major != major_load_type:
-        # Radio changed - clear the number input keys so they reset
-        for key in ["product_power_dc", "product_power_ac"]:
-            if key in st.session_state:
-                del st.session_state[key]
-        st.session_state["_prev_major_load"] = major_load_type
-        st.rerun()
+
+if "major_load_type" not in st.session_state:
+    st.session_state.major_load_type = "MAIN DC LOAD"
 
 # Power requirement
 if voltage_type == "Hybrid (AC & DC)":

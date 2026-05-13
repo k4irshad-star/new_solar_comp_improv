@@ -761,7 +761,7 @@ if product_info['voltage'] == "Hybrid (AC & DC)":
     st.write(f"  - AC Mode: {product_info.get('power_watts_ac', 0)}W")
 else:
     st.write(f"**Product Specifications:** {product_info['rating']}V {product_info['voltage']}, {product_info['power_watts']}W")
-st.write(f"**Product Weight:** {product_info['weightdf']}kg")
+st.write(f"**Product Weight:** {product_info['weight']}kg")
 st.write(f"**Product Price:** ${product_info['price']}")
 
 voltage_inputs = []

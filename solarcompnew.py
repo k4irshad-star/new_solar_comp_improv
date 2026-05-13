@@ -174,13 +174,9 @@ if voltage_type == "Hybrid (AC & DC)":
         )
     if major_load_type == "MAIN DC LOAD":
         power_watts = power_watts_dc
-        st.write("DC1", power_watts_dc)
-        st.write("AC1", power_watts_ac)
     else:
         power_watts = power_watts_ac
     #power_watts = max(power_watts_dc, power_watts_ac)  # Use max for system sizing
-        st.write("DC2", power_watts_dc)
-        st.write("AC2", power_watts_ac)
 else:
     power_watts = st.number_input(
         "Product Power Requirement (W):",

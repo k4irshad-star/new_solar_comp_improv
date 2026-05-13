@@ -148,47 +148,30 @@ if voltage_type ==  "Hybrid (AC & DC)":
         key="major_load_type"
     )
 
-if "major_load_type" not in st.session_state:
-    st.session_state.major_load_type = "MAIN DC LOAD"
-
 # Power requirement
 if voltage_type == "Hybrid (AC & DC)":
-    # Initialize hybrid power values once
-    if "product_power_dc" not in st.session_state:
-        st.session_state.product_power_dc = (
-            product_info_base["default_power_watts"]
-            if major_load_type == "MAIN DC LOAD"
-            else 0
-        )
-
-    if "product_power_ac" not in st.session_state:
-        st.session_state.product_power_ac = (
-            product_info_base["default_power_watts"]
-            if major_load_type == "MAIN AC LOAD"
-            else 0
-        )
     st.markdown("**Power Requirements:**")
     col1, col2 = st.columns(2)
     with col1:
         
-        #dc_default = product_info_base["default_power_watts"] if st.session_state.get("major_load_type") == "MAIN DC LOAD" else 0
         power_watts_dc = st.number_input(
             "🔋 DC Power Requirement (W):",
             min_value=0,
+            value=product_info_base["default_power_watts"] if major_load_type == "MAIN DC LOAD" else 0,
             step=100,
             key="product_power_dc",
             help="Power consumption when running on DC (battery/solar)"
         )
     with col2:
-        #ac_default = product_info_base["default_power_watts"] if st.session_state.get("major_load_type") == "MAIN AC LOAD" else 0
+        
         power_watts_ac = st.number_input(
-        "🔌 AC Power Requirement (W):",
-        min_value=0,
-        step=100,
-        key="product_power_ac",
-        help="Power consumption when running on AC (grid/inverter)"
-    )
-
+            "🔌 AC Power Requirement (W):",
+            min_value=0,
+            value=product_info_base["default_power_watts"] if major_load_type == "MAIN AC LOAD" else 0,
+            step=100,
+            key="product_power_ac",
+            help="Power consumption when running on AC (grid/inverter)"
+        )
     if major_load_type == "MAIN DC LOAD":
         power_watts = power_watts_dc
     else:

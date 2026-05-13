@@ -56,7 +56,7 @@ st.subheader("Select a Product")
 products = {
     "Rice Mill": {"base_price": 800, "default_voltage": "AC", "default_rating": 230, "default_power_watts": 1500, "weight": 45},
     #"Testing Product": {"base_price": 1200, "default_voltage": "AC", "default_rating": 230, "default_power_watts": 2500, "weight": 65},
-    "Custom Product": {"base_price": 300, "default_voltage": "DC", "default_rating": 24, "default_power_watts": 500, "weight": 0}
+    "Custom Product": {"base_price": 0, "default_voltage": "DC", "default_rating": 24, "default_power_watts": 500, "weight": 0}
 }
 product_component_map = {
     "Rice Mill": {
@@ -764,6 +764,7 @@ else:
 st.write(f"**Product Weight:** {product_info['weight']}kg")
 st.write(f"**Product Price:** ${product_info['price']}")
 
+#checking not uploading
 voltage_inputs = []
 if user_components:
     st.write("**Added Components:**")

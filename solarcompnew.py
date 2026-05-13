@@ -173,16 +173,11 @@ if voltage_type == "Hybrid (AC & DC)":
             key="product_power_ac",
             help="Power consumption when running on AC (grid/inverter)"
         )
-    
     if major_load_type == "MAIN DC LOAD":
-        
         power_watts = power_watts_dc
-        if major_load_type == "MAIN AC LOAD":
-            power_watts_dc = 0
         
-    elif major_load_type == "MAIN AC LOAD" :
+    else:
         power_watts = power_watts_ac
-        power_watts_dc = 0
     #power_watts = max(power_watts_dc, power_watts_ac)  # Use max for system sizing
 else:
     power_watts = st.number_input(

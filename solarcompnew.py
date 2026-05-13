@@ -148,6 +148,9 @@ if voltage_type ==  "Hybrid (AC & DC)":
         key="major_load_type"
     )
 
+if "major_load_type" not in st.session_state:
+    st.session_state.major_load_type = "MAIN DC LOAD"
+
 # Power requirement
 if voltage_type == "Hybrid (AC & DC)":
     st.markdown("**Power Requirements:**")
